@@ -1,18 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using System;
+
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    [SerializeField] private List<Button> _tabs;
+
+    private Action<Button> _changeTabsEvent;
+    
     void Start()
     {
-        
+        foreach (Button tab in _tabs)
+        {
+            tab.onClick.AddListener(delegate { _changeTabs(tab); });
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void _changeTabs(Button tab)
     {
-        
+        Debug.Log("Changed Tabs");
+
+        tab.gameObject.SetActive(true);
+        foreach (Button button in _tabs)
+        {
+            if (button != tab) 
+            {
+                
+            }
+        }
+
+        Debug.Log($"{tab.name} active");
+
     }
 }
